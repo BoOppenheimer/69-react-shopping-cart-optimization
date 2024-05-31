@@ -1,64 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom/client'
-import {useState, useMemo} from 'react'
-import './index.css'
+import { CartProvider } from './CartContext';
+import MyList from './MyList';
+import Cart from './Cart';
 
-
-
-
-// {color: "navy", name: "tiny navy apple"}
-
-
-
-const Cart = () => {
-  return (
-    <h1>hiya</h1>
-  )
-}
-
-const ListItem = React.memo(({ item }) => {
-  return (
-  <li 
-  className={`List__item List__item--${item.color}`} onClick={() => console.log(item.name)}
-  >
-    {item.name}
-  </li>
-  );
-});
-
-
-const MyList = ({ items }) => {
-  const renderedItems = useMemo(() => {
-    return items.map((item) => (
-      <ListItem key={item.name} item={item} />
-    ));
-  }, [items]);
+const App = () => {
+  const [items] = useState([
+    { id: 1, name: 'Item 1' },
+    { id: 2, name: 'Item 2' },
+    { id: 3, name: 'Item 3' },
+    { id: 4, name: 'Item 4' },
+    { id: 5, name: 'Item 5' },
+  ]);
 
   return (
-    <ul>
-      {renderedItems}
-    </ul>
+    <CartProvider>
+      <div>
+        <Cart />
+        <MyList items={items} />
+      </div>
+    </CartProvider>
   );
 };
-
-
-const List = ({items}) => {
-
-  return (
-    <div>
-      <Cart/>
-      <MyList items={items} />
-    </div>
-  );
-};
-
-
-
-
-
-
 
 //--- dont modify 
+/* 
 const sizes = ['tiny', 'small'];
 const colors = ['red', 'orange'];
 const fruits = ['apple', 'banana'];
@@ -89,9 +55,11 @@ const items = sizes.reduce(
   [],
 );
 
+*/
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
- 
-    <List items={items} />
+    <App />
+    {/* <List items={items} /> */}
   </React.StrictMode>,
 )
