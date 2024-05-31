@@ -1,13 +1,13 @@
 import { useCart } from './CartContext';
 
 const Cart = () => {
-  const { cartItems } = useCart();
+  const { selectedItems } = useCart();
 
   return (
     <div>
       <h2>Cart</h2>
       <ul>
-        {cartItems.map((item) => (
+        {Object.values(selectedItems).map((item) => (
           <li key={item.id}>{item.name}</li>
         ))}
       </ul>
@@ -16,3 +16,4 @@ const Cart = () => {
 };
 
 export default Cart;
+

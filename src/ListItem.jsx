@@ -3,21 +3,22 @@ import { useCart } from './CartContext';
 
 const ListItem = React.memo(({ item }) => {
   const [isSelected, setIsSelected] = useState(false);
-  const { addToCart, removeFromCart } = useCart();
+  const { addItemToCart, removeItemFromCart } = useCart();
 
   const handleToggle = () => {
-    setIsSelected((prevSelected) => {
-      const newSelected = !prevSelected;
-      if (newSelected) {
-        addToCart(item);
+    setIsSelected((prevIsSelected) => {
+      const newIsSelected = !prevIsSelected;
+      if (newIsSelected) {
+        addItemToCart(item);
       } else {
-        removeFromCart(item.id);
+        removeItemFromCart(item.id);
       }
-      return newSelected;
+      return newIsSelected;
     });
   };
 
   console.log(`Rendering item: ${item.name}`);
+
   return (
     <li
       style={{ cursor: 'pointer', color: isSelected ? 'green' : 'black' }}
@@ -29,3 +30,4 @@ const ListItem = React.memo(({ item }) => {
 });
 
 export default ListItem;
+

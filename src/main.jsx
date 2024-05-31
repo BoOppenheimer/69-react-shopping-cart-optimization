@@ -1,27 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { CartProvider } from './CartContext';
-import MyList from './MyList';
-import Cart from './Cart';
 
-const App = () => {
-  const [items] = useState([
-    { id: 1, name: 'Item 1' },
-    { id: 2, name: 'Item 2' },
-    { id: 3, name: 'Item 3' },
-    { id: 4, name: 'Item 4' },
-    { id: 5, name: 'Item 5' },
-  ]);
+import List from './List';
 
-  return (
-    <CartProvider>
-      <div>
-        <Cart />
-        <MyList items={items} />
-      </div>
-    </CartProvider>
-  );
-};
+
+const items = [
+  { id: 1, name: 'Item 1' },
+  { id: 2, name: 'Item 2' },
+  { id: 3, name: 'Item 3' },
+  { id: 4, name: 'Item 4' },
+  { id: 5, name: 'Item 5' },
+];
+
+
+
 
 //--- dont modify 
 /* 
@@ -59,7 +51,6 @@ const items = sizes.reduce(
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
-    {/* <List items={items} /> */}
+    <List items={items}/>
   </React.StrictMode>,
 )
